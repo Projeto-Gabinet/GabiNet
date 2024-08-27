@@ -1,7 +1,7 @@
 ## Projeto Integrado de desenvolvimento Web
 #### Realizado integrando as matérias Fundamentos de Banco de dados, Desenvolvimento FullStack I, Programação para Internet e Desenvolvimento Ágil de Software  
 ##### Para o curso de Análise e Desenvolvimento de Sistemas da Universidade do Oeste Paulista (UNOESTE)
-### GabiNet: A voz do povo Jauense na mão do Vereador Fernando de Toledo (PL)
+### GabiNet: A voz do povo Jauense na mão do Vereador Fernando de Toledo (PMDB)
 Cansado de esperar por soluções que nunca chegam?
 
 versão 1.0 - 

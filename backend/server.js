@@ -16,8 +16,6 @@ app.use(express.json())
 
 app.use('.api/user', userRoutes)
 
-app.use(authRoutes)
-
 app.use(cidadaoRoutes);
 
 app.use(funcionarioRoutes);

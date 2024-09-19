@@ -7,6 +7,7 @@ const cidadaoRoutes = require('./routes/CidadaoRoutes.js');
 const funcionarioRoutes = require('./routes/FuncionarioRoutes.js');
 const secretariaRoutes = require('./routes/SecretariaRoutes.js');
 const userRoutes = require('./routes/userRoutes.js')
+const authRoutes = require('./routes/rotaAutenticacao.js')
 
 const app =express();
 const port =3000;
@@ -15,7 +16,7 @@ app.use(express.json())
 
 app.use('.api/user', userRoutes)
 
-app.use(autent)
+app.use(authRoutes)
 
 app.use(cidadaoRoutes);
 

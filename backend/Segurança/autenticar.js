@@ -48,3 +48,9 @@ export function verificarAutenticacao(req, resp, next){
     }
 
 }
+
+module.exports(
+    login,
+    logout,
+    verificarAutenticacao
+)

@@ -1,9 +1,9 @@
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://localhost:4000";
 
-class SecretariaService {
+class SolicitacaoService {
   async obterTodos() {
     try {
-      const response = await fetch(`${API_BASE_URL}/secretarias`, {
+      const response = await fetch(`${API_BASE_URL}/solicitacao`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -11,19 +11,19 @@ class SecretariaService {
       });
 
       if (!response.ok) {
-        throw new Error("Erro ao listar secretarias");
+        throw new Error("Erro ao listar Solicitações");
       }
 
       const dados = await response.json();
       return dados;
     } catch (error) {
-      console.error("Erro ao listar secretarias:", error);
+      console.error("Erro ao listar Solicitações:", error);
       throw error;
     }
   }
 
   async obterPorId(id) {
-    const response = await fetch(`${API_BASE_URL}/secretarias/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/solicitacao/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,50 +37,50 @@ class SecretariaService {
     }
   }
 
-  async adicionar(secretariaDados) {
+  async adicionar(SolicitacaoDados) {
     try {
-      const response = await fetch(`${API_BASE_URL}/secretarias`, {
+      const response = await fetch(`${API_BASE_URL}/solicitacao`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(secretariaDados),
+        body: JSON.stringify(SolicitacaoDados),
       });
 
       if (!response.ok) {
         console.log("Ocorreu um erro ao adicionar");
-        throw new Error("Erro ao cadastrar secretarias");
+        throw new Error("Erro ao cadastrar Solicitacao");
       }
     } catch (error) {
       throw error;
     }
   }
 
-  async atualizar(idSecretaria, secretariaDados) {
+  async atualizar(idSolicitacao, SolicitacaoDados) {
     try {
-      const response = await fetch(`${API_BASE_URL}/secretarias/${idSecretaria}`,
+      const response = await fetch(`${API_BASE_URL}/solicitacao/${idSolicitacao}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(secretariaDados),
+          body: JSON.stringify(SolicitacaoDados),
         }
       );
 
       if (!response.ok) {
         console.log("Ocorreu um erro ao atualizar");
-        throw new Error("Erro ao atualizar secretarias");
+        throw new Error("Erro ao atualizar Solicitacaos");
       }
     } catch (error) {
       throw error;
     }
   }
 
-  async delete(idSecretaria) {
+  async delete(idSolicitacao) {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/secretarias/${idSecretaria}`,
+        `${API_BASE_URL}/solicitacao/${idSolicitacao}`,
         {
           method: "DELETE",
         }
@@ -88,7 +88,7 @@ class SecretariaService {
 
       if (!response.ok) {
         console.log("Ocorreu um erro ao deletar");
-        throw new Error("Erro ao deletar secretaria");
+        throw new Error("Erro ao deletar solicitação");
       }
     } catch (error) {
       throw error;
@@ -98,7 +98,7 @@ class SecretariaService {
   async filtrar(termoBusca) {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/secretarias/filtrar/${termoBusca}`,
+        `${API_BASE_URL}/Solicitacaos/filtrar/${termoBusca}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -107,16 +107,16 @@ class SecretariaService {
       );
 
       if (!response.ok) {
-        throw new Error("Erro ao filtrar secretarias");
+        throw new Error("Erro ao filtrar Solicitações");
       }
 
       const dados = await response.json();
       return dados; // Retorna diretamente os dados filtrados
     } catch (error) {
-      console.error("Erro ao filtrar secretarias:", error);
+      console.error("Erro ao filtrar Solicitações:", error);
       throw error;
     }
   }
 }
 
-export default SecretariaService;
+export default SolicitacaoService;

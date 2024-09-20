@@ -1,5 +1,4 @@
-import { Router } from "express";
-import  login, { logout} from "../Seguranca/autenticar.js";
+import  { login, logout } from "../Seguranca/autenticar.js";
 
 
 const rotaAutenticacao = new Router(); 

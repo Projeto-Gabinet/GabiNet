@@ -16,35 +16,35 @@ import {
   FaTrashAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import FuncionarioService from "../../services/FuncionarioService";
+import SolicitacaoService from "../../services/SolicitacaoService";
 
-const funcionarioService = new FuncionarioService();
+const solicitacaoService = new SolicitacaoService();
 
-function Funcionarios() {
-  const [listaFuncionarios, setListaFuncionarios] = useState([]);
+function solicitacao() {
+  const [listaSolicitacoes, setlistaSolicitacoes] = useState([]);
   const [termoBusca, setTermoBusca] = useState("");
   const handleBuscaChange = (event) => {
     setTermoBusca(event.target.value);
   };
 
   const handleFiltrar = async () => {
-    await listarFuncionarios(termoBusca);
+    await listarSolicitacoes(termoBusca);
   };
 
-  const listarFuncionarios = async (termoBusca) => {
+  const listarSolicitacoes = async (termoBusca) => {
     let dados = [];
     if (termoBusca) {
-      dados = await funcionarioService.filtrar(termoBusca);
-      setListaFuncionarios(dados);
+      dados = await SolicitacaoService.filtrar(termoBusca);
+      setlistaSolicitacoes(dados);
     } else {
-      dados = await funcionarioService.obterTodos();
-      setListaFuncionarios(dados);
+      dados = await SolicitacaoService.obterTodos();
+      setlistaSolicitacoes(dados);
     }
   };
 
 
   useEffect(() => {
-    listarFuncionarios();
+    listarSolicitacoes();
   }, []);
 
 
@@ -52,8 +52,8 @@ function Funcionarios() {
   const handleExcluir = async (id) => {
     if (window.confirm("Tem certeza que deseja excluir?")) {
       try {
-        await funcionarioService.delete(id);
-        await listarFuncionarios();
+        await SolicitacaoService.delete(id);
+        await listarSolicitacoes();
       } catch (error) {
         console.error("Erro ao excluir cidadão:", error);
       }
@@ -70,7 +70,7 @@ function Funcionarios() {
           <Card.Body>
             <Row>
               <Col lg="2">
-                <Button as={Link} to="/funcionarios/novo" variant="primary">
+                <Button as={Link} to="/solicitacao/novo" variant="primary">
                   <FaPlus /> Adicionar
                 </Button>
               </Col>
@@ -97,29 +97,29 @@ function Funcionarios() {
 
       <Container className="mt-2">
         <Card>
-          <Card.Header as="h5">Funcionários Cadastrados</Card.Header>
+          <Card.Header as="h5">Solicitações Cadastradas</Card.Header>
           <Card.Body>
             <Table striped bordered hover onChange={handleFiltrar}>
               <thead>
                 <tr>
                   <th>#id</th>
-                  <th>Nome</th>
-                  <th>Telefone</th>
-                  <th>Partido</th>
+                  <th>Cidadao</th>
+                  <th>Assunto</th>
+                  <th>Andamento</th>
                 </tr>
               </thead>
               <tbody>
-                {listaFuncionarios.length <= 0
+                {listaSolicitacoes.length <= 0
                   ? "Nenhum funcionário para listar"
-                  : listaFuncionarios.map((funcionario) => (
+                  : listaSolicitacoes.map((Solicitacao) => (
                       <tr>
-                        <td>{funcionario.id}</td>
-                        <td>{funcionario.nome}</td>
-                        <td>{funcionario.telefone}</td>
-                        <td>{funcionario.partido}</td>
+                        <td>{Solicitacao.id}</td>
+                        <td>{Solicitacao.cidadao}</td>
+                        <td>{Solicitacao.assunto}</td>
+                        <td>{Solicitacao.status}</td>
                         <td>
                           <Link
-                            to={`/funcionarios/${funcionario.id}`}
+                            to={`/solicitacao/${Solicitacao.id}`}
                             className="btn btn-primary m-1"
                           >
                             {" "}
@@ -127,7 +127,7 @@ function Funcionarios() {
                           </Link>
                           <Button
                             className="btn btn-danger"
-                            onClick={() => handleExcluir(funcionario.id)}
+                            onClick={() => handleExcluir(Solicitacao.id)}
                           >
                             {" "}
                             <FaTrashAlt></FaTrashAlt> Excluir
@@ -144,4 +144,4 @@ function Funcionarios() {
   );
 }
 
-export default Funcionarios;
+export default solicitacao;

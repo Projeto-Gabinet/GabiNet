@@ -70,6 +70,8 @@ CREATE TABLE solicitacao (
     CONSTRAINT fk_secretaria FOREIGN KEY (secretaria_id) REFERENCES secretaria(id)
 );
 
+/*Exemplo de como popular as tabelas*/
+
 INSERT INTO usuario (nome, email, senha)
 VALUES
   ('Usuário 1', 'usuario1@email.com', 'senha123'),

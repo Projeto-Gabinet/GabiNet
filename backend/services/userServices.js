@@ -1,6 +1,7 @@
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const userModel = require("../model/entidades/UserModel.js");
+const { verifyRole } = require("../middleware/authMiddleware");
 
 const registerUser = async (nome, email, senha) => {
   try {
